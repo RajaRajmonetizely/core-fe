@@ -1,0 +1,19 @@
+.root {
+  padding: 0.5rem 0.5rem 0;
+  justify-content: space-between;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.textField {
+  margin: 1 0.5 1.5;
+
+  .MuiSvgIcon-root {
+    margin-right: 0.4rem;
+  }
+
+  .MuiInput-underline:before {
+    border-bottom: 1px solid black;
+  }
+}

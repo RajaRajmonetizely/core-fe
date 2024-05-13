@@ -1,0 +1,29 @@
+.icon {
+  filter: invert(37%) sepia(69%) saturate(3991%) hue-rotate(228deg) brightness(97%) contrast(93%);
+}
+.selectedIcon {
+  filter: invert(91%) sepia(100%) saturate(3%) hue-rotate(122deg) brightness(108%) contrast(97%);
+}
+
+.panelButton {
+  margin-left: 15px !important;
+  width: 243px;
+  border-radius: 10px !important;
+  color: #2d3748;
+  padding: 4px 8px!important;
+}
+
+.panelTextSelected {
+  font-family: Helvetica !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 21px !important;
+  letter-spacing: 0em !important;
+  text-align: left;
+  color: #2d3748;
+}
+
+.panelText {
+  @extend .panelTextSelected;
+  color: #a0aec0;
+}

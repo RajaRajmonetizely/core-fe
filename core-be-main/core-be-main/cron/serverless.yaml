@@ -1,0 +1,38 @@
+service: serverless-monetizely-cron
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    fileName: requirements.txt
+
+provider:
+  name: aws
+  runtime: python3.9
+  lambdaHashingVersion: "20201221"
+  iam:
+    role: arn:aws:iam::${aws:accountId}:role/monetizely-basic-lambda-role
+  timeout: 900
+  region: us-east-1
+  environment: ${file(../config/env.${opt:stage}.json)}
+
+functions:
+  salesforce-cron:
+    handler: crontask.lambda_handler
+    events:
+      - schedule: rate(15 minutes)
+
+package:
+  individually:
+    true
+  exclude:
+    - .cache/**
+    - .env
+    - .git/**
+    - .github/**
+    - .pytest_cache/**
+    - .serverless/**
+    - node_modules/**
+    - static/**
+    - db.sqlite3

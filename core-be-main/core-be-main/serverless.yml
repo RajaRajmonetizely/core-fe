@@ -1,0 +1,70 @@
+frameworkVersion: '3'
+
+service: serverless-monetizely-api
+
+plugins:
+  - serverless-prune-plugin
+  - serverless-python-requirements
+  - serverless-wsgi
+
+
+custom:
+  pythonRequirements:
+    pythonBin: python3
+    dockerImage: mlupin/docker-lambda:python3.9-build
+    dockerizePip: non-linux
+    zip: true
+    fileName: requirements.txt
+  stage: ${opt.stage}
+  wsgi:
+    app: monetizely.wsgi.application
+    packRequirements: false
+  prune:
+    automatic: true
+    number: 3
+
+functions:
+  - app:
+      handler: wsgi_handler.handler
+      layers:
+        - arn:aws:lambda:us-east-1:764866452798:layer:libreoffice-brotli:1
+      events:
+        - http:
+            method: ANY
+            path: /{proxy+}
+            cors: true
+        - http:
+            path: /api/v1/salesforce/sync
+            method: post
+            async: true
+provider:
+  name: aws
+  runtime: python3.9
+  iam:
+    role: arn:aws:iam::${aws:accountId}:role/monetizely-basic-lambda-role
+  timeout: 899
+  region: us-east-1
+  vpc:
+    securityGroupIds:
+      - ${ssm:/monetizely/VpcSg}
+    subnetIds:
+      - ${ssm:/monetizely/VpcSubnet_1}
+      - ${ssm:/monetizely/VpcSubnet_2}
+  apiGateway:
+    shouldStartNameWithService: true
+  lambdaHashingVersion: 20201221
+  environment: ${file(./config/env.${opt:stage}.json)}
+
+package:
+  individually:
+    true
+  exclude:
+    - .cache/**
+    - .env
+    - .git/**
+    - .github/**
+    - .pytest_cache/**
+    - .serverless/**
+    - node_modules/**
+    - static/**
+    - db.sqlite3

@@ -1,0 +1,1 @@
+Contains reusable & immutable strings like URLs, Regex Patterns, etc.

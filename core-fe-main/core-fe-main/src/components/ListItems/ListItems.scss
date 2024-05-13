@@ -1,0 +1,25 @@
+.item {
+  height: 50px;
+  background: #f4f6fe;
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.03);
+  border-radius: 5px;
+  height: auto;
+  margin-bottom: 9px !important;
+}
+
+.last-item {
+  margin-bottom: 0px !important;
+}
+
+.itemText {
+  font-family: 'Helvetica' !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  line-height: 18px !important;
+  color: #3b3f4d !important;
+  margin-left: 27px !important;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+  overflow-wrap: anywhere;
+}

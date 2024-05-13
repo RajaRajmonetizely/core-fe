@@ -1,0 +1,15 @@
+{
+  "name": "core-be",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serverless-prune-plugin": "^1.4.4",
+    "serverless-python-requirements": "^5.1.1",
+    "serverless-wsgi": "^3.0.1"
+  },
+  "devDependencies": {
+    "serverless-dotenv-plugin": "^6.0.0"
+  }
+}

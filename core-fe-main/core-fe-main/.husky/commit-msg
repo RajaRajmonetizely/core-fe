@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+if ! head -1 "$1" | grep -qE "^(feat|fix|ci|chore|docs|test|style|refactor|perf|build|revert)(\(.+?\))?: .{1,}$"; then
+    echo "Aborting commit. Your commit message is invalid." >&2
+    echo "(Example)-> feat(module_name): added xyz to module" >&2
+    echo "Your commit should follow Conventional Commits specifications, vist https://www.conventionalcommits.org/en/v1.0.0/#summary to know more.">&2
+    exit 1
+fi
+if ! head -1 "$1" | grep -qE "^.{1,170}$"; then
+    echo "Aborting commit. Your commit message is too long." >&2
+    exit 1
+fi
